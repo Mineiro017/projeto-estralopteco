@@ -2,37 +2,159 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - McBmo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>McBMO</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap');
 
-  <!-- Marcio pfvr tenha piedade te prometo q ate a semana do TI vai-->
-  <link rel="stylesheet" href="style.css">
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1b1b1b;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .phone-frame {
+      background-color: #00b8a9;
+      width: 100%;
+      max-width: 390px;
+      height: 100vh;
+      max-height: 844px;
+      border-radius: 35px;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      color: #6d8a75;
+    }
+
+    .logo {
+      background-color: #e4e3dd;
+      border-radius: 12px;
+      padding: 8px 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .logo h1 {
+      margin: 0;
+      font-size: 26px;
+      color: #6d8a75;
+    }
+
+    .question-box {
+      background-color: #e4e3dd;
+      border-radius: 12px;
+      padding: 20px;
+      font-size: 20px;
+      font-weight: 600;
+      width: 80%;
+      margin: 40px auto;
+      box-shadow: 0 4px 0 #6d8a75;
+    }
+
+    .btn {
+      background-color: #e4e3dd;
+      color: #6d8a75;
+      font-size: 22px;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 40px;
+      margin: 10px;
+      width: 70%;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #6d8a75;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #6d8a75;
+    }
+
+    .bmo {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
+  <div class="phone-frame">
     <div class="logo">
-      <img src="" alt="logo">
-      <h1>McBmo</h1>
+      <img src="https://cdn-icons-png.flaticon.com/512/4712/4712101.png" alt="logo">
+      <h1>McBMO</h1>
     </div>
 
-    <h2>Faça login</h2>
+    <div id="content">
+      <!-- Tela inicial -->
+      <div id="tela-inicial">
+        <h2 style="color:white;">Vamos brincar e<br>descobrir juntos?</h2>
+        <img src="https://i.pinimg.com/originals/15/8d/41/158d4119eeae545f18a0b711be9cbf6d.png" class="bmo" alt="BMO">
+        <button class="btn" onclick="iniciar()">Começar</button>
+      </div>
 
-    <form>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Senha" required>
-      <a href="#">Esqueceu senha?</a>
-      <button type="submit" class="btn-entrar">Entrar</button>
-    </form>
+      <!-- Tela das perguntas -->
+      <div id="tela-perguntas" class="hidden">
+        <div class="question-box" id="pergunta">Você está feliz hoje?</div>
+        <button class="btn" onclick="responder()">Não</button>
+        <button class="btn" onclick="responder()">Sim</button>
+        <img src="https://i.pinimg.com/originals/15/8d/41/158d4119eeae545f18a0b711be9cbf6d.png" class="bmo" alt="BMO">
+      </div>
 
-    <div class="social-login">
-      ou entre com
-      <div class="social-buttons">
-        <div class="social-btn">G+</div>
-        <div class="social-btn">f</div>
+      <!-- Tela final -->
+      <div id="tela-final" class="hidden">
+        <h2 style="color:white;">Obrigado por brincar comigo! 💚</h2>
+        <img src="https://i.pinimg.com/originals/15/8d/41/158d4119eeae545f18a0b711be9cbf6d.png" class="bmo" alt="BMO">
       </div>
     </div>
-
-    <img src="" alt="" class="">
   </div>
+
+  <script>
+    const perguntas = [
+      "Você está feliz hoje?",
+      "Você gosta de frutas?",
+      "Você tem um brinquedo favorito?",
+      "Você gosta de ir para a escola?",
+      "Você gosta de animais?",
+      "Você gosta de chocolate?"
+    ];
+
+    let indice = 0;
+
+    function iniciar() {
+      document.getElementById("tela-inicial").classList.add("hidden");
+      document.getElementById("tela-perguntas").classList.remove("hidden");
+      document.getElementById("pergunta").innerText = perguntas[indice];
+    }
+
+    function responder() {
+      indice++;
+      if (indice < perguntas.length) {
+        document.getElementById("pergunta").innerText = perguntas[indice];
+      } else {
+        document.getElementById("tela-perguntas").classList.add("hidden");
+        document.getElementById("tela-final").classList.remove("hidden");
+      }
+    }
+  </script>
 </body>
 </html>
